@@ -200,7 +200,12 @@ var Game = function () {
 					gameOver();
 				}
 			}
-
+			if (bird.y < 0) {
+			gameOver();
+			}
+if (bird.y < + bird.h > height) {
+			gameOver();
+			}
 		});
 	};
 
@@ -286,7 +291,7 @@ game.newLoop('GameOver', function () {
 	if (mouse.isPeekObject('LEFT', pushVK)) {
 		VK.api('wall.post', {
 
-			'message' : 'В приложении FlappyBird PointJS я набрал очков: ' + score + '\n Попробуй и ты: https://vk.com/app5728305',
+			'message' : 'В приложении Flappyorko PointJS я набрал очков: ' + score + '\n Попробуй и ты: https://vk.com/app5728305',
 			'attachments' : 'photo-44840923_456239018'
 
 		}, function (data) {
