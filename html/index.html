@@ -14,11 +14,17 @@
 
 </head>
 <body>
-
+<script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
 <script type="text/javascript" src="point.js"></script>
 <script type="text/javascript">
-//var l = pjs.math.random(200, 900);
 
+var vk_inited = false;
+
+VK.init(function() {
+	vk_inited = true;
+}, function() {
+
+}, '5.60');
 
 var width = 640, height = 480;
 
@@ -115,7 +121,7 @@ var Menu = function () {
 		brush.drawText({
 			x : width / 2,
 			y : height / 3,
-			text : 'FlappyOrko',
+			text : 'FlappyBird',
 			size : 50,
 			color : 'white',
 			font : 'myFont',
@@ -239,7 +245,13 @@ var Game = function () {
 game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('game', new Game());
 
-
+var pushVK = game.newTextObject({
+	text : 'Publish to VK',
+	positionC : p(width/2, height/2),
+	font : 'myFont',
+	size : 30,
+	color : '#254364'
+});
 
 var restart = game.newTextObject({
 	text : 'Restart',
