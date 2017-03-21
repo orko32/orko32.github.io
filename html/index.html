@@ -140,6 +140,9 @@ var Game = function () {
 	var space = 80;
 
 	var addBlock = function (y) {
+		OOP.forInt(5, function () {
+			addBlocks(pjs.math.random(space*2, height-space*2));
+		});
 
 		var dX = oldBlock ? oldBlock.top.x + pjs.math.random(200, 900) : width;
 
@@ -161,6 +164,7 @@ var Game = function () {
 				this.y = y + space;
 			}
 		});
+		
 
 		var obj = {
 			'top' : o,
@@ -241,9 +245,9 @@ if (bird.y < 0) {
 
 	this.entry = function () {
 		blocks = [], oldBlock = false;
-		OOP.forInt(5, function () {
-			addBlocks(pjs.math.random(space*2, height-space*2));
-		});
+		//OOP.forInt(5, function () {
+		//	addBlocks(pjs.math.random(space*2, height-space*2));
+		//});
 
 	
 		bird.setPositionC(p(width / 2, height / 2));
