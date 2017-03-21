@@ -200,7 +200,13 @@ var Game = function () {
 					gameOver();
 				}
 			}
+if (bird.y < 0) {
+				gameOver();
+			}
 
+			if (bird.y + bird.h > height) {
+				gameOver();
+			}
 		});
 	};
 
