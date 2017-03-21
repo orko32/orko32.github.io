@@ -171,10 +171,6 @@ var Game = function () {
 		blocks.push(obj);
 	};
 
-	OOP.forInt(5, function () {
-		addBlock(pjs.math.random(space*2, height-space*2));
-	});
-
 	var drawBlocks = function () {
 		OOP.forArr(blocks, function (el) {
 			el.top.draw();
@@ -200,12 +196,15 @@ var Game = function () {
 					gameOver();
 				}
 			}
+
 			if (bird.y < 0) {
-			gameOver();
+				gameOver();
 			}
-if (bird.y < + bird.h > height) {
-			gameOver();
+
+			if (bird.y + bird.h > height) {
+				gameOver();
 			}
+
 		});
 	};
 
@@ -242,6 +241,16 @@ if (bird.y < + bird.h > height) {
 	};
 
 	this.entry = function () {
+
+		bird.dy = 0;
+
+		blocks = [], oldBlock = false;
+
+		OOP.forInt(5, function () {
+			addBlock(pjs.math.random(space*2, height-space*2));
+		});
+
+
 		bird.setPositionC(p(width / 2, height / 2));
 		score = 0;
 	};
@@ -291,7 +300,7 @@ game.newLoop('GameOver', function () {
 	if (mouse.isPeekObject('LEFT', pushVK)) {
 		VK.api('wall.post', {
 
-			'message' : 'В приложении Flappyorko PointJS я набрал очков: ' + score + '\n Попробуй и ты: https://vk.com/app5728305',
+			'message' : 'В приложении FlappyOrko я набрал очков: ' + score + '\n Попробуй и ты: 'https://vk.com/app5869021_181684754',
 			'attachments' : 'photo-44840923_456239018'
 
 		}, function (data) {
