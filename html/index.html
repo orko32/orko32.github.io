@@ -98,7 +98,7 @@ var bird = game.newAnimationObject({
 	w : 34, h : 24,
 	positionC : p(width / 2, height / 2),
 	scale : 1.5,
-	animation : pjs.tiles.newAnimation('34_24_4.png', 250, 250, 1),
+	animation : pjs.tiles.newAnimation('34_24_4.png', 250, 250,1),
 	delay : 2,
 	userData : {
 		dy : 0
@@ -244,7 +244,12 @@ var Game = function () {
 
 		bird.dy = 0;
 
-		
+		blocks = [], oldBlock = false;
+
+		OOP.forInt(5, function () {
+			addBlock(pjs.math.random(space*2, height-space*2));
+		});
+
 
 		bird.setPositionC(p(width / 2, height / 2));
 		score = 0;
