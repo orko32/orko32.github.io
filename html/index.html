@@ -244,12 +244,54 @@ var Game = function () {
 
 		bird.dy = 0;
 
-		blocks = [], oldBlock = false;
-		 
-		OOP.forInt(5, function () {
-			addBlock(pjs.math.random(space*2, height-space*2));
+		var blocks = [], oldBlock = false;
+	var space = 80;
+
+	var addBlock = function (y) {
+
+		var dX = oldBlock ? oldBlock.top.x + pjs.math.random(200, 900) : width;
+
+		var o = game.newImageObject({
+			file : 'block.png',
+			x : dX, y : 0,
+			w : width / 10,
+			angle : 180,
+			onload : function () {
+				this.y = -this.h + y - space;
+			}
 		});
 
+		var o2 = game.newImageObject({
+			file : 'block.png',
+			x : dX, y : 0,
+			w : width / 10,
+			onload : function () {
+				this.y = y + space;
+			}
+		});
+
+		var obj = {
+			'top' : o,
+			'bottom' : o2
+		}
+
+		oldBlock = obj;
+		blocks.push(obj);
+	};
+
+	var drawBlocks = function () {
+		OOP.forArr(blocks, function (el) {
+			el.top.draw();
+			el.bottom.draw();
+
+			el.top.move(p(-1.5, 0));
+			el.bottom.move(p(-1.5, 0));
+
+			if (el.top.x + el.top.w < 0) {
+				el.top.x = el.bottom.x = oldBlock.top.x + oldBlock.top.w + pjs.math.random(200, 900);
+				oldBlock = el;
+				score += 1;
+			}
 
 		bird.setPositionC(p(width / 2, height / 2));
 		score = 0;
