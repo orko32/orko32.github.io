@@ -121,7 +121,7 @@ var Menu = function () {
 		brush.drawText({
 			x : width / 2,
 			y : height / 3,
-			text : 'FlappyOrko',
+			text : 'FlappyBird',
 			size : 50,
 			color : 'white',
 			font : 'myFont',
@@ -140,9 +140,6 @@ var Game = function () {
 	var space = 80;
 
 	var addBlock = function (y) {
-		OOP.forInt(5, function () {
-			addBlocks(pjs.math.random(space*2, height-space*2));
-		});
 
 		var dX = oldBlock ? oldBlock.top.x + pjs.math.random(200, 900) : width;
 
@@ -164,7 +161,6 @@ var Game = function () {
 				this.y = y + space;
 			}
 		});
-		
 
 		var obj = {
 			'top' : o,
@@ -175,8 +171,7 @@ var Game = function () {
 		blocks.push(obj);
 	};
 
-			
-var drawBlocks = function () {
+	var drawBlocks = function () {
 		OOP.forArr(blocks, function (el) {
 			el.top.draw();
 			el.bottom.draw();
@@ -201,13 +196,15 @@ var drawBlocks = function () {
 					gameOver();
 				}
 			}
-if (bird.y < 0) {
+
+			if (bird.y < 0) {
 				gameOver();
 			}
 
 			if (bird.y + bird.h > height) {
 				gameOver();
 			}
+
 		});
 	};
 
@@ -244,12 +241,16 @@ if (bird.y < 0) {
 	};
 
 	this.entry = function () {
-		blocks = [], oldBlock = false;
-		//OOP.forInt(5, function () {
-		//	addBlocks(pjs.math.random(space*2, height-space*2));
-		//});
 
-	
+		bird.dy = 0;
+
+		blocks = [], oldBlock = false;
+
+		OOP.forInt(5, function () {
+			addBlock(pjs.math.random(space*2, height-space*2));
+		});
+
+
 		bird.setPositionC(p(width / 2, height / 2));
 		score = 0;
 	};
@@ -299,8 +300,8 @@ game.newLoop('GameOver', function () {
 	if (mouse.isPeekObject('LEFT', pushVK)) {
 		VK.api('wall.post', {
 
-			'message' : 'В приложении FlappyOrko я набрал очков: ' + score + '\n Попробуй и ты: https://vk.com/app5869021_181684754',
-			'attachments' : 'photo-68702024_456239018'
+			'message' : 'В приложении FlappyBird PointJS я набрал очков: ' + score + '\n Попробуй и ты: https://vk.com/app5728305',
+			'attachments' : 'photo-44840923_456239018'
 
 		}, function (data) {
 			log('Success');
@@ -314,4 +315,3 @@ game.startLoop('menu');
 </script>
 </body>
 </html>
-
