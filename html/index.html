@@ -121,7 +121,7 @@ var Menu = function () {
 		brush.drawText({
 			x : width / 2,
 			y : height / 3,
-			text : 'FlappyBird',
+			text : 'FlappyOrko',
 			size : 50,
 			color : 'white',
 			font : 'myFont',
@@ -247,7 +247,7 @@ var Game = function () {
 		blocks = [], oldBlock = false;
 
 		OOP.forInt(5, function () {
-			addBlocks(pjs.math.random(space*2, height-space*2));
+			addBlock(pjs.math.random(space*2, height-space*2));
 		});
 
 
