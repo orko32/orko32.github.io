@@ -241,14 +241,15 @@ var Game = function () {
 	};
 
 	this.entry = function () {
-game.startLoop('game');
-		//bird.dy = 0;
 
-		//blocks = [], oldBlock = false;
+		bird.dy = 0;
 
-		//OOP.forInt(5, function () {
-		//	addBlock(pjs.math.random(space*2, height-space*2));
-		//});
+		blocks = [], oldBlock = false;
+		 addBlock = function (y)
+drawBlocks = function ()
+		OOP.forInt(5, function () {
+			addBlock(pjs.math.random(space*2, height-space*2));
+		});
 
 
 		//bird.setPositionC(p(width / 2, height / 2));
